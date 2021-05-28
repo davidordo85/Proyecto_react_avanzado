@@ -12,13 +12,17 @@ const accessToken = storage.get('auth');
 configureClient({ accessToken });
 
 const store = configureStore({ preloadedState: { auth: !!accessToken } });
-console.log(store.getState());
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Router>
-      <App isInitiallyLogged={!!accessToken} />
-    </Router>
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
+const render = () => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <Router>
+        <App store={store} />
+      </Router>
+    </React.StrictMode>,
+    document.getElementById('root'),
+  );
+};
+
+store.subscribe(render);
+render();
