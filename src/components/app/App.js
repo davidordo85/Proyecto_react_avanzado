@@ -8,16 +8,16 @@ import { AuthProvider } from '../auth/context';
 import NotFoundPage from './NotFoundPage';
 import { authLogin, authLogout } from '../../store/actions';
 
-function App({ store }) {
+function App() {
   const handleLogin = () => {
-    store.dispatch(authLogin());
+    //store.dispatch(authLogin());
   };
   const handleLogout = () => {
-    store.dispatch(authLogout());
+    //store.dispatch(authLogout());
   };
 
   const authProps = {
-    isLogged: store.getState().auth,
+    isLogged: false,
     handleLogin,
     handleLogout,
   };

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { configureClient } from './api/client';
@@ -16,13 +17,14 @@ const store = configureStore({ preloadedState: { auth: !!accessToken } });
 const render = () => {
   ReactDOM.render(
     <React.StrictMode>
-      <Router>
-        <App store={store} />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
     </React.StrictMode>,
     document.getElementById('root'),
   );
 };
 
-store.subscribe(render);
 render();
